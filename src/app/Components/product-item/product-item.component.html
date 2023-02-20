@@ -1,0 +1,38 @@
+<mat-card class="example-card text-center">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title class="text-center">{{ product.title }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="product.img" alt="Photo of a Shiba Inu" />
+  <mat-card-content>
+    <p>
+      {{ product.desc }}
+    </p>
+    <div class="lead">{{ product.price }}$</div>
+    <ng-container [ngSwitch]="product.quantity">
+      <div *ngSwitchCase="'1'" class="lead">Only One Piece Available</div>
+      <div *ngSwitchCase="'0'" class="lead">Not Available Now</div>
+      <div *ngSwitchDefault class="lead">
+        {{ product.quantity }} Pieces Available
+      </div>
+    </ng-container>
+  </mat-card-content>
+  <mat-card-actions class="p-4 my-3">
+    <button mat-button>
+      <button
+        class="mx-4 btn btn-outline-primary w-90"
+        routerLink="/addProduct/{{ product._id }}"
+      >
+        <mat-icon>mode_edit</mat-icon>Edit
+      </button>
+    </button>
+    <button mat-button>
+      <button
+        class="mx-5 btn btn-outline-danger w-90"
+        (click)="handlerDeleteProduct(product._id)"
+      >
+        <mat-icon>delete</mat-icon><span>Delete</span>
+      </button>
+    </button>
+  </mat-card-actions>
+</mat-card>

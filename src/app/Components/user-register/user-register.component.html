@@ -1,0 +1,38 @@
+<div class="all">
+  <div class="container">
+    <nav>
+      <div class="log">
+        <ul>
+          <li>
+            <a
+              routerLink="login"
+              (click)="changeColorLog()"
+              [ngClass]="{
+                flag: flag == true
+              }"
+              >Login</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="reg">
+        <ul>
+          <li>
+            <a
+              routerLink="register"
+              (click)="changeColor()"
+              [ngClass]="{
+                flag: flag == false
+              }"
+              >Register</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="input">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

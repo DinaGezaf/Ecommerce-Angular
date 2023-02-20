@@ -1,0 +1,44 @@
+<div class="containerall">
+    <div class="container m-5 p-5 bg-light">
+        <div class="row">
+            <h4 class="text-center p-4 ">
+                 
+            </h4>
+    
+            <table class="table">
+                <thead>
+                  <tr class="table_row">
+                    <th scope="col" >Product</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cart">
+                    <th scope="row"><img src="{{item.product_img}}">
+                         <!-- <span>{{item.product_name}}</span>  -->
+                    </th>
+                    <td>{{item.product_name}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.price}}</td>
+                    <td>-</td>
+    
+                   
+                  </tr>
+                 
+                 
+                  
+                </tbody>
+              </table>
+    
+    
+        </div>
+    
+    </div>
+
+</div>
+
+
