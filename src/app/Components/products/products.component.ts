@@ -38,6 +38,6 @@ export class ProductsComponent implements OnInit {
   };
 
   getProductById(id: number) {
-    this.service.getId(1);
+    this.service.getId(id);
   }
 }

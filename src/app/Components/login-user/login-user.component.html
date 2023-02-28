@@ -1,4 +1,4 @@
-<form [formGroup]="login">
+<form [formGroup]="login" (ngSubmit)="onSubmit()">
   <input
     class="field"
     type="email"
@@ -40,6 +40,47 @@
       <a href="#">Forget password ?</a>
     </div>
   </div>
+  <button type="submit">Login</button>
 </form>
 
-<button [disabled]="!login.valid">Login</button>
+<form [formGroup]="register" (ngSubmit)="onRegister()">
+  <input
+    class="field"
+    type="text"
+    placeholder="User Name"
+    formControlName="username"
+  />
+  <span
+    *ngIf="
+      register.get('username')?.invalid && register.get('username')?.touched
+    "
+    style="color: rgb(202, 69, 69)"
+    >you should enter valid user name</span
+  >
+
+  <input
+    class="field"
+    type="email"
+    placeholder="User Email"
+    formControlName="email"
+  />
+  <span
+    *ngIf="register.get('email')?.invalid && register.get('email')?.touched"
+    style="color: rgb(202, 69, 69)"
+    >you should enter valid email</span
+  >
+
+  <input
+    class="field"
+    type="password"
+    placeholder="Password"
+    formControlName="pass"
+  />
+  <span
+    *ngIf="register.get('pass')?.invalid && register.get('pass')?.touched"
+    style="color: rgb(202, 69, 69)"
+    >you should enter valid password</span
+  >
+
+  <button type="submit">Sign Up</button>
+</form>

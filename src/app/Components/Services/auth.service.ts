@@ -13,20 +13,13 @@ import { catchError, throwError } from 'rxjs';
 export class AuthService {
   URL: string = 'http://localhost:8080/login';
 
-  email: string = 'adminD@gmail.com';
-  password: string = '123';
-
   change: any;
-  flag: boolean=false;
+  flag: boolean = false;
   constructor(private http: HttpClient) {}
 
-  login() {
-    this.flag=true
-    this.change = localStorage.getItem('token');
-    return this.http.post(this.URL, {
-      email: this.email,
-      password: this.password,
-    });
+  login(_email: any, _password: any) {
+      console.log(_email, _password);
+    return this.http.post(this.URL, {"email":_email,"password":_password});
   }
 
   getToken() {
@@ -56,5 +49,17 @@ export class AuthService {
         return throwError(error);
       })
     );
+  }
+
+  register(username: string, email: string, password: string) {
+    return this.http.post(this.URL, {
+      username,
+      email,
+      password,
+    });
+  }
+
+  logout() {
+    return this.http.post(this.URL, {});
   }
 }

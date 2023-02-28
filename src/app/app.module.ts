@@ -20,14 +20,14 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LoginUserComponent } from './Components/login-user/login-user.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { UserRegisterComponent } from './Components/user-register/user-register.component';
-import { AuthService } from './Components/Services/auth.service';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { HomeComponent } from './Components/home/home.component';
 import { NavbarUserComponent } from './Components/navbar-user/navbar-user.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { SliderComponent } from './Components/slider/slider.component';
-import { ViewAdminComponent } from './Components/view-admin/view-admin.component';
+import { AuthInterceptorService } from './Components/Services/interceptor.service';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { ViewAdminComponent } from './Components/view-admin/view-admin.component
     NavbarUserComponent,
     ProductsComponent,
     SliderComponent,
-    ViewAdminComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,9 +63,12 @@ import { ViewAdminComponent } from './Components/view-admin/view-admin.component
     ComponentModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-

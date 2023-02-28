@@ -46,9 +46,9 @@
     <div class="row" *ngFor="let myproduct of products">
       <div *ngFor="let product of myproduct" class="col-md-3 my-5">
         <div
-          routerLink="product/details"
+          routerLink="product/details/{{product._id}}"
           class="product"
-          (click)="getProductById(product.id)"
+          (click)="getProductById(product._id)"
         >
           <img src="{{ product.img }}" style="max-width: 100%" />
           <!-- <div class="cart" onclick="counetr(0)">

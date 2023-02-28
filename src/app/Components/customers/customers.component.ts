@@ -7,7 +7,7 @@ import { CustomersService } from '../Services/customers.service';
   styleUrls: ['./customers.component.css'],
 })
 export class CustomersComponent implements OnInit {
-  displayedColumns: string[] = ['ID', 'Name', 'Email', 'Password', 'Actions'];
+  displayedColumns: string[] = ['Name', 'Email', 'Password', 'Actions'];
   users: any;
   constructor(private customersService: CustomersService) {}
   ngOnInit(): void {
@@ -18,15 +18,14 @@ export class CustomersComponent implements OnInit {
       this.users = Object.values(response);
     });
   }
-  onDelete(productId: any) {
-    this.customersService.deleteUser(productId).subscribe((response) => {
-      console.log(response);
-      this.users = this.users.filter((user: any) => {
-        return user.id != productId;
+  onDelete(id: any) {
+    this.customersService.deleteUser(id).subscribe((response) => {
+      console.log(this.users[0]);
+      this.users[0] = this.users[0].filter((data: any) => {
+        console.log(data._id);
+        return data._id != id;
       });
-      alert(`Deleted`);
       this.loadUsers();
     });
   }
-
 }

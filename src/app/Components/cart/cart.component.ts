@@ -9,14 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cart: Cart[] = [];
-  product_id: number = 0;
+  cart:any;
+  id: any;
   constructor(public active: ActivatedRoute, public cartser: CartService) {
-    this.product_id = this.active.snapshot.params['id'];
+    this.id = this.active.snapshot.params['id'];
   }
   ngOnInit(): void {
-    this.cartser.getCartDetails(this.product_id).subscribe((response) => {
-      this.cart = response;
+    this.cartser.getCartDetails().subscribe((response) => {
+      this.cart = Object.values(response)[0];
+      console.log(this.cart)
     });
   }
 }

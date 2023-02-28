@@ -11,7 +11,7 @@ export class RegisterComponent {
     email: new FormControl("",[
       Validators.email,
       Validators.required,
-      
+
     ]),
     pass:new FormControl("",[
       Validators.required,
@@ -21,7 +21,7 @@ export class RegisterComponent {
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(15),
-      
+
     ])
 
   })

@@ -5,23 +5,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class OrdersService {
-  URL: string = 'http://localhost:8080/users';
+  URL: string = 'http://localhost:8080/orders';
   constructor(private http: HttpClient) {}
 
   getAllOrders() {
     return this.http.get(this.URL);
   }
-  getOrderById(userId: any) {
-    return this.http.get(`${this.URL}/${userId}`);
+  getOrderById(id: any) {
+    return this.http.get(`${this.URL}/${id}`);
   }
   addOrder(order: any) {
     return this.http.post(this.URL, order);
   }
 
-  editOrder(userId: any, order: any) {
-    return this.http.post(`${this.URL}/${userId}`, order);
+  editOrder(id: any, order: any) {
+    return this.http.post(`${this.URL}/${id}`, order);
   }
-  deleteOrder(userId: any) {
-    return this.http.delete(`${this.URL}/${userId}`);
+  deleteOrder(id: any) {
+    return this.http.delete(`${this.URL}/${id}`);
   }
 }

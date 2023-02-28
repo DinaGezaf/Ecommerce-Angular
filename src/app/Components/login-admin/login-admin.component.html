@@ -1,20 +1,24 @@
-<section class="vh-100" style="background-color: #7e83af15">
+<!-- <section class="vh-100" style="background-color: #7e83af15">
   <div class="container-fluid h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
         <div class="card" style="border-radius: 1rem">
           <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img
-                src="../../../assets/imgs/login.png"
-                alt="login form"
-                class="img-fluid"
-                style="border-radius: 1rem 0 0 1rem"
-              />
-            </div>
+
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+                <button [disabled]="!loginForm.valid">Login</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <i
                       class="fas fa-cubes fa-2x me-3"
@@ -79,12 +83,67 @@
                       Login
                     </button>
                   </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+                </form> -->
+
+<div class="input">
+  <h4 class="text-center p-3 m-3">Login your Account</h4>
+  <form [formGroup]="loginForm" class="py-4" (ngSubmit)="onSubmit()">
+    <input
+      class="field"
+      type="email"
+      placeholder="User Email"
+      formControlName="uemail"
+      [(ngModel)]="email"
+    />
+
+    <span
+      *ngIf="
+        loginForm.get('uemail')?.invalid && loginForm.get('uemail')?.touched
+      "
+      style="color: rgb(202, 69, 69)"
+      >you should enter valid email</span
+    >
+
+    <input
+      class="field"
+      type="password"
+      placeholder="Password"
+      formControlName="upassword"
+      [(ngModel)]="password"
+    />
+    <span
+      *ngIf="
+        loginForm.get('upassword')?.invalid &&
+        loginForm.get('upassword')?.touched
+      "
+      style="color: rgb(202, 69, 69)"
+      >you should enter valid password</span
+    >
+    <br />
+    <div class="check">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+        />
+        <label class="form-check-label" for="flexCheckDefault">
+          Remember Me
+        </label>
+      </div>
+      <div>
+        <a href="#">Forget password ?</a>
       </div>
     </div>
-  </div>
-</section>
+    <div class="pt-1 mb-4 mx-auto mt-3">
+      <button
+        style="width: 400px"
+        class="btn text-light fw-bold btn-dark"
+        type="sumbit"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
 
@@ -9,11 +10,14 @@ import { AuthService } from '../Services/auth.service';
   styleUrls: ['./login-admin.component.css'],
 })
 export class LoginAdminComponent {
+  email: any;
+  password: any;
   public loginForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {
     this.loginForm = formBuilder.group({
       uemail: ['', [Validators.required]],
@@ -24,10 +28,12 @@ export class LoginAdminComponent {
     return this.loginForm.controls;
   }
   onSubmit() {
-    this.authService.login().subscribe((response: any) => {
-      localStorage.setItem('token', response);
-      console.log(response);
+    this.authService.login(this.email,this.password).subscribe((response: any) => {
+      if (response != "Not Authenticated") {
+        localStorage.setItem('admin', response);
+        this.dialog.closeAll();
+        this.router.navigate(['home']);
+      }
     });
-    this.router.navigate(['view']);
   }
 }

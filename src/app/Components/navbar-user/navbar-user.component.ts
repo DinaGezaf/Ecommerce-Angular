@@ -1,3 +1,4 @@
+import { UserRegisterComponent } from './../user-register/user-register.component';
 import { LoginAdminComponent } from './../login-admin/login-admin.component';
 import { LoginUserComponent } from './../login-user/login-user.component';
 import { Component } from '@angular/core';
@@ -14,10 +15,10 @@ export class NavbarUserComponent {
   constructor(private dialog: MatDialog) {}
 
   openEditor() {
-    this.dialog.open(LoginUserComponent, {
+    this.dialog.open(UserRegisterComponent, {
       data: '',
       height: '70vh',
-      width: '50vw',
+      width: '32vw',
     });
   }
 
@@ -25,7 +26,7 @@ export class NavbarUserComponent {
     this.dialog.open(LoginAdminComponent, {
       data: '',
       height: '70vh',
-      width: '50vw',
+      width: '32vw',
     });
   }
 }

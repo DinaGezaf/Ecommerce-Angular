@@ -24,13 +24,12 @@
           <a href="./contact.html">Contact Us</a>
         </li>
         <li>
-          <button
-            mat-icon-button
+          <a
             [matMenuTriggerFor]="menu"
             aria-label="Example icon-button with a menu"
           >
             <mat-icon>account_circle</mat-icon>
-          </button>
+        </a>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="openEditor()">
               <mat-icon>person</mat-icon>

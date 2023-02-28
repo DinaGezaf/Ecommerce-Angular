@@ -1,6 +1,5 @@
-import { ViewAdminComponent } from './Components/view-admin/view-admin.component';
+import { CartComponent } from './Components/cart/cart.component';
 import { SidenavComponent } from './Components/sidenav/sidenav.component';
-import { LoginUserComponent } from './Components/login-user/login-user.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LoginAdminComponent } from './Components/login-admin/login-admin.component';
 import { OrdersComponent } from './Components/orders/orders.component';
@@ -9,24 +8,35 @@ import { ProductlistComponent } from './Components/productlist/productlist.compo
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CustomersComponent } from './Components/customers/customers.component';
-import { RegisterComponent } from './Components/register/register.component';
 import { HomeComponent } from './Components/home/home.component';
+import { UserRegisterComponent } from './Components/user-register/user-register.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'product/details', component: ProductlistComponent },
-  { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: 'view', component: ViewAdminComponent },
-  { path: 'view/home', component: DashboardComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'adminlogin', component: LoginAdminComponent },
-  { path: 'userlogin', component: LoginUserComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'products', component: ProductlistComponent },
-  { path: 'customers', component: CustomersComponent },
-  { path: 'orders', component: OrdersComponent },
-  { path: 'addProduct/new', component: AddProductComponent },
-  { path: 'addProduct/:id', component: AddProductComponent },
-  { path: 'editProduct', component: AddProductComponent },
+  { path: 'product/details/:id/getcart/:id', component: CartComponent },
+  { path: 'product/details/:id', component: ProductDetailsComponent },
+
+  {
+    path: 'register',
+    component: UserRegisterComponent,
+  },
+  {
+    path: 'home',
+    component: SidenavComponent,
+    children: [
+      { path: '', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'products', component: ProductlistComponent },
+      { path: 'customers', component: CustomersComponent },
+      { path: 'orders', component: OrdersComponent },
+      { path: 'addProduct/new', component: AddProductComponent },
+      { path: 'products/addProduct/:id', component: AddProductComponent },
+      { path: 'editProduct', component: AddProductComponent },
+    ],
+  },
+  { path: '', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

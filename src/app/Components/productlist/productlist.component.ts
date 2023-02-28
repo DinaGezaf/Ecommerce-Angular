@@ -1,7 +1,8 @@
 import { ProductsService } from './../Services/products.service';
 import { AddProductComponent } from './../add-product/add-product.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { IProduct } from '../Model/IProduct';
 
 @Component({
   selector: 'app-productlist',
@@ -38,5 +39,23 @@ export class ProductlistComponent implements OnInit {
       img: '',
     };
     this.openEditor(product);
+  }
+  @Input() product: IProduct = {
+    _id: 0,
+    title: '',
+    desc: '',
+    price: 0,
+    quantity: 0,
+    img: '',
+    categories: '',
+  };
+
+  handlerDeleteProduct(productId: any) {
+    this.productsService.deleteProduct(productId).subscribe((response) => {
+      this.products =
+        this.products.filter((data: any) => {
+          return data._id != productId;
+        });
+    });
   }
 }

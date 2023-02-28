@@ -74,37 +74,26 @@ export class AddProductComponent implements OnInit {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    this.productData = {
-      title: 'sss',
-      desc: 'sfdm;lwjklagjlerjgakljmgrke',
-      quantity: 232,
-      price: 22,
-      categories: 'Table',
-      img: 'jknjdj',
-    };
+    this.productData = this.productForm.value;
 
     if (this.productId) {
       console.log(this.productData);
       this.productsService
         .editProduct(this.productId, this.productData)
         .subscribe((response) => {
-          console.log('ss');
           this.productData = Object.values(response);
           this.loadProducts();
-          this.router.navigate(['/products']);
+          this.router.navigate(['home/products']);
         });
     } else {
       this.productsService
         .addProduct(this.productData)
         .subscribe((response) => {
-          console.log('ddd');
-
           this.productData = Object.values(response);
-          console.log(this.productData);
           this.loadProducts();
-          this.router.navigate(['/products']);
+          this.router.navigate(['home/products']);
         });
     }
   }
-  
+
 }

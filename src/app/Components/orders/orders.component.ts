@@ -15,6 +15,15 @@ export class OrdersComponent {
   ];
   orders: any;
   constructor(private ordersService: OrdersService) {}
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+  loadUsers() {
+    this.ordersService.getAllOrders().subscribe((response) => {
+      this.orders = Object.values(response);
+      console.log(this.orders)
+    });
+  }
   onDelete(userId: any) {
     this.ordersService.deleteOrder(userId).subscribe((response) => {
       console.log(response);
